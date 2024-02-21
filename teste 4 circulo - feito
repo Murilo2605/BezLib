@@ -1,0 +1,208 @@
+#teste 4 circulo
+
+import matplotlib.pyplot as plt
+import math 
+
+p = 2
+
+Px = []
+Py = []
+Pw = []
+
+Px.append(-0.5)
+Px.append(-0.5)
+Px.append(0)
+
+Py.append(0)
+Py.append(0.5)
+Py.append(0.5)
+
+Pw.append(0.5)
+Pw.append(0.5)
+Pw.append(0.5)
+
+Pa = []
+Pb = []
+Pc = []
+
+Pa.append(0.5)
+Pa.append(0.5)
+Pa.append(0)
+
+Pb.append(0)
+Pb.append(0.5)
+Pb.append(0.5)
+
+Pc.append(0.5)
+Pc.append(0.5)
+Pc.append(0.5)
+
+Pd = []
+Pe = []
+Pf = []
+
+Pd.append(-0.5)
+Pd.append(-0.5)
+Pd.append(0)
+
+Pe.append(0)
+Pe.append(-0.5)
+Pe.append(-0.5)
+
+Pf.append(0.5)
+Pf.append(0.5)
+Pf.append(0.5)
+
+Pg = []
+Ph = []
+Pi = []
+
+Pg.append(0.5)
+Pg.append(0.5)
+Pg.append(0)
+
+Ph.append(0)
+Ph.append(-0.5)
+Ph.append(-0.5)
+
+Pi.append(0.5)
+Pi.append(0.5)
+Pi.append(0.5)
+
+ti = 0
+tf = 1
+
+numpnt = 3000
+numseg = numpnt-1
+delta = (tf - ti) / numseg
+
+x = [ ]
+y = [ ]
+w = [ ]
+
+a = [ ]
+b = [ ]
+c = [ ]
+
+d = [ ]
+e = [ ]
+f = [ ]
+
+g = [ ]
+h = [ ]
+i = [ ]
+
+print("  d = ", delta)
+
+basfunc = [1, 1, 1]
+
+
+for i in range(1,numpnt):
+      t = ti + (i-1) * delta
+
+      basfunc[0] = (1-t)**2
+      basfunc[1] = (2*(1-t)*t)
+      basfunc[2] = t**2
+
+      #efeito da variação do peso
+      W_0 = basfunc[0] * Pw[0] + basfunc[1] * Pw[1] + basfunc[2] * Pw[2]
+      W_1 = basfunc[0] * Pc[0] + basfunc[1] * Pc[1] + basfunc[2] * Pc[2]
+      W_2 = basfunc[0] * Pf[0] + basfunc[1] * Pf[1] + basfunc[2] * Pf[2]
+      W_3 = basfunc[0] * Pi[0] + basfunc[1] * Pi[1] + basfunc[2] * Pi[2]
+
+
+      #base racional
+      basfunc[0] = basfunc[0] * Pw[0] / W_0
+      basfunc[1] = basfunc[1] * Pw[1] / W_0
+      basfunc[2] = basfunc[2] * Pw[2] / W_0
+
+      basfunc[0] = basfunc[0] * Pc[0] / W_1
+      basfunc[1] = basfunc[1] * Pc[1] / W_1
+      basfunc[2] = basfunc[2] * Pc[2] / W_1
+
+      basfunc[0] = basfunc[0] * Pf[0] / W_2
+      basfunc[1] = basfunc[1] * Pf[1] / W_2
+      basfunc[2] = basfunc[2] * Pf[2] / W_2
+
+
+
+      currX = Px[0] * basfunc[0] + Px[1] * basfunc[1] + Px[2] * basfunc[2]
+      currY = Py[0] * basfunc[0] + Py[1] * basfunc[1] + Py[2] * basfunc[2]
+      currW = Pw[0] * basfunc[0] + Pw[1] * basfunc[1] + Pw[2] * basfunc[2] 
+
+      currA = Pa[0] * basfunc[0] + Pa[1] * basfunc[1] + Pa[2] * basfunc[2]
+      currB = Pb[0] * basfunc[0] + Pb[1] * basfunc[1] + Pb[2] * basfunc[2]
+      currC = Pc[0] * basfunc[0] + Pc[1] * basfunc[1] + Pc[2] * basfunc[2] 
+
+      currD = Pd[0] * basfunc[0] + Pd[1] * basfunc[1] + Pd[2] * basfunc[2]
+      currE = Pe[0] * basfunc[0] + Pe[1] * basfunc[1] + Pe[2] * basfunc[2]
+      currF = Pf[0] * basfunc[0] + Pf[1] * basfunc[1] + Pf[2] * basfunc[2] 
+
+      currG = Pg[0] * basfunc[0] + Pg[1] * basfunc[1] + Pg[2] * basfunc[2]
+      currH = Ph[0] * basfunc[0] + Ph[1] * basfunc[1] + Ph[2] * basfunc[2]
+      currI = Pi[0] * basfunc[0] + Pi[1] * basfunc[1] + Pi[2] * basfunc[2] 
+
+      
+      #distancia da curva calculada
+      soma_0 = soma_1 = soma_2 = soma_3 = 0    
+
+      soma_0 = soma_0 - currX*currY
+      soma_1 = soma_1 - currA*currB
+      soma_2 = soma_2 - currD*currE
+      soma_3 = soma_3 - currG*currH
+      
+
+      #currX = EvalBez(Px,p,t);     
+      #currY = EvalBez(Py,p,t);
+
+      #escaneando os resultados e
+      #print(" peso_0 = ", W_0)
+      #print(" peso_1 = ", W_1)
+      #print(" peso_2 = ", W_2)
+      #print(" peso_3 = ", W_3)
+
+      #print(" X = ", currX)  
+      #print(" Y = ", currY)
+      #print(" A = ", currA)
+      #print(" B = ", currB)
+      #print(" D = ", currD)
+      #print(" E = ", currE)
+      #print(" G = ", currG)
+      #print(" H = ", currH)
+      
+      #print(" distXY = ", soma_0)
+      #print(" distAB = ", soma_1)
+      #print(" distDE = ", soma_2)
+      #print(" distGH = ", soma_3)
+      
+      
+      x.append(currX)
+      y.append(currY)
+      a.append(currA)
+      b.append(currB)
+      d.append(currD)
+      e.append(currE)
+      g.append(currG)
+      h.append(currH)
+      
+      
+
+      bvec = []
+
+      for i in range(0,p+1):
+      
+           baseFunc =  (math.factorial(p)/(math.factorial(i)*math.factorial(p-i)))*(1-t)**(p-i)*t**i
+
+           bvec.append(baseFunc)
+
+           # escaneando as funções de base em relação às funções vetoriais
+           
+
+plt.plot(x, y, a, b, d, e, g, h, color = 'blue')
+plt.plot(Px, Py, Pa, Pb, Pd, Pe, Pg, Ph, "--", color = 'red')
+plt.title("Círculo de Bézier com variação do peso")
+plt.xlabel("x")
+plt.ylabel("y")
+
+plt.grid()
+plt.show()
